@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Garden Path Not Found</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-content {
+            max-width: 500px;
+        }
+        .error-icon {
+            margin-bottom: 2rem;
+            color: var(--color-green-light);
+        }
+        .error-title {
+            font-size: 2rem;
+            color: var(--color-green-deep);
+            margin-bottom: 1rem;
+        }
+        .error-message {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-green-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 2rem;
+            transition: var(--transition-smooth);
+        }
+        .back-home:hover {
+            background: var(--color-green-light);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-content">
+            <svg class="error-icon" width="120" height="120" viewBox="0 0 120 120">
+                <path d="M60 20 L40 40 L40 80 L80 80 L80 40 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+                <path d="M50 40 L50 30 M60 40 L60 25 M70 40 L70 30" stroke="currentColor" stroke-width="3"/>
+                <text x="60" y="65" text-anchor="middle" font-size="20" fill="currentColor">404</text>
+            </svg>
+            <h1 class="error-title">Garden Path Not Found</h1>
+            <p class="error-message">
+                It seems you've wandered off the garden path. 
+                The page you're looking for doesn't exist in our greenhouse.
+            </p>
+            <a href="/" class="back-home">
+                <svg width="20" height="20" viewBox="0 0 20 20">
+                    <path d="M10 3 L3 10 L10 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Back to the Greenhouse
+            </a>
+        </div>
+    </div>
+</body>
+</html>

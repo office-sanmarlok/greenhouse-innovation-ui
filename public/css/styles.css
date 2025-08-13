@@ -1,0 +1,763 @@
+/* Global Styles and Variables */
+:root {
+    --color-soil: #8B7355;
+    --color-soil-light: #A0896F;
+    --color-green-deep: #2E7D32;
+    --color-green-primary: #4CAF50;
+    --color-green-light: #66BB6A;
+    --color-green-pale: #81C784;
+    --color-green-soft: #A5D6A7;
+    --color-green-mist: #C8E6C9;
+    --color-glass: rgba(255, 255, 255, 0.95);
+    --color-glass-frosted: rgba(255, 255, 255, 0.85);
+    --color-sunlight: #FFF9C4;
+    --color-gold: #FFD700;
+    --color-silver: #C0C0C0;
+    --color-bronze: #CD7F32;
+    
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.16);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(180deg, #F5F5F5 0%, #E8F5E9 100%);
+    min-height: 100vh;
+    color: #2E7D32;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: linear-gradient(180deg, 
+        rgba(255, 249, 196, 0.3) 0%, 
+        rgba(255, 249, 196, 0.1) 50%, 
+        transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Greenhouse Canopy Header */
+.greenhouse-canopy {
+    position: sticky;
+    top: 0;
+    background: var(--color-glass);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(76, 175, 80, 0.1);
+    box-shadow: var(--shadow-soft);
+    z-index: 100;
+    animation: canopyDrop 0.6s ease-out;
+}
+
+@keyframes canopyDrop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.canopy-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-green-primary);
+}
+
+.logo-icon {
+    animation: gentleSway 3s ease-in-out infinite;
+}
+
+@keyframes gentleSway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--color-green-deep), var(--color-green-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Search Bar */
+.search-container {
+    flex: 1;
+    max-width: 500px;
+}
+
+.search-bar {
+    position: relative;
+    width: 100%;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border: 2px solid rgba(76, 175, 80, 0.2);
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--color-green-primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1),
+                0 0 20px rgba(76, 175, 80, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-green-light);
+    pointer-events: none;
+}
+
+/* Climate Controls */
+.climate-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.climate-dial {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(76, 175, 80, 0.3);
+    background: white;
+    color: var(--color-green-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.climate-dial:hover {
+    transform: rotate(45deg);
+    border-color: var(--color-green-primary);
+    background: var(--color-green-mist);
+}
+
+.plant-seed-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--color-green-primary), var(--color-green-light));
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-soft);
+}
+
+.plant-seed-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.plant-seed-btn:active {
+    transform: translateY(0);
+}
+
+/* Garden Beds Navigation */
+.garden-beds {
+    background: var(--color-glass-frosted);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(76, 175, 80, 0.1);
+    position: sticky;
+    top: 80px;
+    z-index: 90;
+}
+
+.beds-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.beds-strip {
+    flex: 1;
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 0.5rem 0;
+}
+
+.beds-strip::-webkit-scrollbar {
+    height: 4px;
+}
+
+.beds-strip::-webkit-scrollbar-track {
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 2px;
+}
+
+.beds-strip::-webkit-scrollbar-thumb {
+    background: var(--color-green-light);
+    border-radius: 2px;
+}
+
+.bed {
+    flex: 0 0 200px;
+    padding: 1rem 1.5rem;
+    background: white;
+    border: 2px solid rgba(76, 175, 80, 0.2);
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.bed:hover {
+    border-color: var(--color-green-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.bed.active {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(129, 199, 132, 0.05));
+    border-color: var(--color-green-primary);
+    box-shadow: var(--shadow-medium);
+}
+
+.vine-border {
+    position: absolute;
+    inset: -2px;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    background: linear-gradient(45deg, var(--color-green-primary), var(--color-green-light));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;
+    animation: vineGrow 2s ease-out;
+}
+
+@keyframes vineGrow {
+    from {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+.week-label {
+    font-weight: 600;
+    color: var(--color-green-deep);
+}
+
+.sprout-count {
+    font-size: 0.85rem;
+    color: var(--color-green-light);
+}
+
+.bed-nav {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(76, 175, 80, 0.3);
+    background: white;
+    color: var(--color-green-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.bed-nav:hover {
+    border-color: var(--color-green-primary);
+    background: var(--color-green-mist);
+}
+
+/* Main Greenhouse Grid */
+.greenhouse-grid {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* Section Titles */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    color: var(--color-green-deep);
+}
+
+.title-icon {
+    color: var(--color-green-light);
+}
+
+/* Featured Garden */
+.featured-pots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Plant Grid */
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Potted Plant Card */
+.potted-plant {
+    animation: plantEmerge 0.6s ease-out backwards;
+}
+
+.potted-plant:nth-child(2) { animation-delay: 0.1s; }
+.potted-plant:nth-child(3) { animation-delay: 0.2s; }
+.potted-plant:nth-child(4) { animation-delay: 0.3s; }
+.potted-plant:nth-child(5) { animation-delay: 0.4s; }
+.potted-plant:nth-child(6) { animation-delay: 0.5s; }
+
+@keyframes plantEmerge {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pot {
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAF9F7 100%);
+    border: 2px solid rgba(139, 115, 85, 0.1);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+    position: relative;
+    cursor: pointer;
+}
+
+.pot::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(180deg, transparent, rgba(139, 115, 85, 0.03));
+    border-radius: 0 0 1rem 1rem;
+    pointer-events: none;
+}
+
+.potted-plant:hover .pot {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-strong);
+    border-color: var(--color-green-light);
+}
+
+.potted-plant:hover .plant {
+    animation: plantWiggle 0.5s ease-in-out;
+}
+
+@keyframes plantWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-3deg); }
+    75% { transform: rotate(3deg); }
+}
+
+/* Prize Ribbons */
+.prize-ribbon {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    width: 50px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 0.9rem;
+    z-index: 10;
+}
+
+.prize-ribbon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.prize-ribbon span {
+    position: relative;
+    z-index: 1;
+}
+
+.prize-ribbon.gold { color: var(--color-gold); }
+.prize-ribbon.silver { color: var(--color-silver); }
+.prize-ribbon.bronze { color: var(--color-bronze); }
+
+/* Plant Container */
+.plant-container {
+    position: relative;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.plant {
+    position: relative;
+    z-index: 2;
+    transition: var(--transition-smooth);
+}
+
+.plant-icon {
+    display: block;
+}
+
+/* Vitality Vine */
+.vitality-vine {
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+    width: 4px;
+    height: calc(var(--growth) * 1px);
+    max-height: 100px;
+    transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vine-stalk {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--color-green-light), var(--color-green-primary));
+    border-radius: 2px;
+    position: relative;
+}
+
+.vine-leaves {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.leaf {
+    position: absolute;
+    width: 12px;
+    height: 8px;
+    background: var(--color-green-light);
+    border-radius: 0 100% 0 100%;
+    opacity: 0;
+    animation: leafGrow 0.5s ease-out forwards;
+}
+
+.leaf:nth-child(1) {
+    top: 20%;
+    left: 4px;
+    transform: rotate(45deg);
+    animation-delay: 0.2s;
+}
+
+.leaf:nth-child(2) {
+    top: 50%;
+    right: 4px;
+    transform: rotate(-45deg);
+    animation-delay: 0.4s;
+}
+
+.leaf:nth-child(3) {
+    top: 80%;
+    left: 4px;
+    transform: rotate(45deg);
+    animation-delay: 0.6s;
+}
+
+@keyframes leafGrow {
+    to {
+        opacity: 1;
+        transform: scale(1.2) rotate(45deg);
+    }
+}
+
+/* Plant Details */
+.plant-details {
+    position: relative;
+    z-index: 2;
+}
+
+.plant-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-green-deep);
+    margin-bottom: 0.25rem;
+}
+
+.plant-description {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.plant-meta {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.nutrient-label {
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(129, 199, 132, 0.1));
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    color: var(--color-green-primary);
+    font-weight: 500;
+}
+
+.growth-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-green-primary);
+}
+
+.stat-icon {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+.stat-value {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Unplanted Seedbed */
+.unplanted-seedbed {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.seedbed-content {
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.soil-texture {
+    height: 100px;
+    background: linear-gradient(180deg, 
+        transparent, 
+        rgba(139, 115, 85, 0.05),
+        rgba(139, 115, 85, 0.1));
+    border-radius: 0 0 50% 50%;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.nascent-seeds {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+}
+
+.seed {
+    width: 8px;
+    height: 12px;
+    background: var(--color-green-light);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(45deg);
+    opacity: 0.3;
+    animation: seedPulse 3s ease-in-out infinite;
+}
+
+.seed:nth-child(2) { animation-delay: 1s; }
+.seed:nth-child(3) { animation-delay: 2s; }
+
+@keyframes seedPulse {
+    0%, 100% { transform: rotate(45deg) scale(1); }
+    50% { transform: rotate(45deg) scale(1.2); opacity: 0.6; }
+}
+
+.seedbed-message {
+    font-size: 1.5rem;
+    color: var(--color-green-deep);
+    margin-bottom: 0.5rem;
+}
+
+.seedbed-description {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.add-first-seed {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-green-primary);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.add-first-seed:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Master Gardeners */
+.master-gardeners {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-glass);
+    border: 2px solid rgba(76, 175, 80, 0.1);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-medium);
+    width: 220px;
+}
+
+.gardeners-title {
+    font-size: 0.9rem;
+    color: var(--color-green-deep);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.gardener-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.gardener {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.gardener-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--color-green-light);
+    grid-row: span 2;
+}
+
+.gardener-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-green-deep);
+}
+
+.gardener-plants {
+    font-size: 0.75rem;
+    color: var(--color-green-light);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .master-gardeners {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .canopy-content {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .search-container {
+        width: 100%;
+    }
+    
+    .climate-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .featured-pots {
+        grid-template-columns: 1fr;
+    }
+    
+    .plant-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}

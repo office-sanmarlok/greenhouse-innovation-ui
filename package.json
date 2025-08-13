@@ -1,0 +1,33 @@
+{
+  "name": "greenhouse-innovation-ui",
+  "version": "1.0.0",
+  "description": "A botanical-themed project launchpad UI - Greenhouse of Innovation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo 'No build step required'"
+  },
+  "keywords": [
+    "greenhouse",
+    "innovation",
+    "launchpad",
+    "botanical",
+    "ui"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "supabase": "^2.34.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
